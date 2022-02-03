@@ -1,17 +1,40 @@
 #!/bin/bash
-#C:\\Users\\haji.uduman\\Downloads\\codeql\\codeql resolve languages  | head -n1  | cut -d " " -f1
-#my_array = ( $(C:\\Users\\haji.uduman\\Downloads\\codeql\\codeql resolve languages) )
-#IFS=$'\n'
-readarray -t my_array < <(C:\\Users\\haji.uduman\\Downloads\\codeql\\codeql resolve languages)
-#IFS=$'\r\n' read -r -d '' -a my_array < <( C:\\Users\\haji.uduman\\Downloads\\codeql\\codeql resolve languages )
-#declare -p my_array
+codeql_path=C:\\Users\\haji.uduman\\Downloads\\codeql
+readarray -t codeql_languages < <($codeql_path\\codeql resolve languages)
+languages=()
 
-for i in "${!my_array[@]}"; do
-    stringarray=(${my_array[i]})
-    printf '%s\n' "${stringarray[0]}"
+for i in "${!codeql_languages[@]}"; do
+    stringarray=(${codeql_languages[i]})
+    languages+=(${stringarray[0]})
 done
 
-# for (( i=0; i<${my_array}; i++ ));
-# do
-#   echo "index: $i"
-# done
+db_path=/c/Users/haji.uduman/Desktop/db
+readarray -t db_folders < <(ls -d $db_path/*/)
+
+echo ===================================
+repo_languages=()
+for i in "${!db_folders[@]}"; do
+    stringarray=($(basename ${db_folders[i]}))
+    case "${languages[@]}" in  *"${stringarray[0]}"*) repo_languages+=(${stringarray[0]}) ;; esac
+done
+
+echo ===================================
+
+for i in "${!languages[@]}"; do
+    printf '%s\n' "${languages[i]}"
+done
+
+echo ===================================
+
+for i in "${!repo_languages[@]}"; do
+    printf '%s\n' "${repo_languages[i]}"
+done
+
+echo "${#repo_languages[@]}"
+
+if [ -e x.txt ]
+then
+    echo "ok"
+else
+    echo "nok"
+fi
