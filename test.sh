@@ -30,7 +30,12 @@ for i in "${!repo_languages[@]}"; do
     printf '%s\n' "${repo_languages[i]}"
 done
 
-echo "${#repo_languages[@]}"
+
+if [ ${#repo_languages[@]} -eq 1 ]; then
+    echo "One"
+elif [ ${#repo_languages[@]} -gt 1 ]; then
+    echo "More than one"
+fi
 
 if [ -e x.txt ]
 then
