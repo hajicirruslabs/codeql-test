@@ -15,7 +15,7 @@ steps:
 - task: CodeQLTask@1
   inputs:
     language: 'cpp'
-  continueOnError: true
+  # continueOnError: true
 - script: |
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
