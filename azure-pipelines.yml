@@ -12,7 +12,7 @@ pool:
 steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
-- task: CodeQLTask@1
+- task: CodeQLTask@2
   inputs:
     language: 'cpp'
   # continueOnError: true
