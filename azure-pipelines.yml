@@ -12,11 +12,9 @@ pool:
 steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
-- task: CodeQLTask@2
-  inputs:
-    language: 'cpp'
-  # continueOnError: true
+
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
+    echo $(continueOnError)
+    echo $CONTINUEONERROR
   displayName: 'Run a multi-line script'
+  continueOnError: true
