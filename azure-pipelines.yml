@@ -14,7 +14,7 @@ steps:
   displayName: 'Run a one-line script'
 
 - script: |
-    echo $(continueOnError)
-    echo $CONTINUEONERROR
+    echo ----$(continueOnError)
+    echo ====${CONTINUEONERROR}
   displayName: 'Run a multi-line script'
   continueOnError: true
